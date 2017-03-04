@@ -1,0 +1,68 @@
+/**
+ * 
+ */
+package cn.yin.jx.action.sysadmin;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ModelDriven;
+
+import cn.yin.jx.action.BaseAction;
+import cn.yin.jx.domain.Dept;
+import cn.yin.jx.service.DeptService;
+import cn.yin.jx.utils.Page;
+
+/**
+ * @Description:
+ * @author:     尹成功
+ * @version:    1.0
+ * @Company:    http://java.itcast.cn 
+ * @date:       2017年2月15日
+ */
+public class DeptAction extends BaseAction implements ModelDriven<Dept>{
+	
+	private Dept model = new Dept();
+	
+	public Dept getModel() {
+		return model;
+	}
+
+	
+
+	// 注入DeptService
+	private DeptService deptService;
+
+	public void setDeptService(DeptService deptService) {
+		this.deptService = deptService;
+	}
+	
+	// 分页组件
+	private Page page= new Page();
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+	
+	// 分页查询
+	public String list(){
+		String hql = "from Dept";
+		deptService.findPage(hql, page, Dept.class, null);
+		
+		page.setUrl("deptAction_list");// 相对定位
+		
+		ActionContext.getContext().getValueStack().push(page);
+		
+		return "list";
+		
+	}
+	
+	
+	
+	
+	
+	
+
+}
