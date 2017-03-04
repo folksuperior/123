@@ -20,7 +20,7 @@ import cn.yin.jx.utils.FileUtil;
  * @date:       2017年3月1日
  */
 public class StatChartAction extends BaseAction{
-	//为了减化，省略了Service,而直接引入sqlDao
+	//为了减化，省略了Service,而直接引入sqlDao.
 	private SqlDao sqlDao;
 	public void setSqlDao(SqlDao sqlDao) {
 		this.sqlDao = sqlDao;
